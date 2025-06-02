@@ -93,3 +93,71 @@ ssh sidrk@10.0.0.44
 ```
 
 <br>
+
+## Part 6 - Disabling password authentication in SSH
+
+To prevent password-based logins completely and strengthen security, edit the SSH configuration file:
+
+```
+sudo nano /etc/ssh/sshd_config
+```
+
+Update these values:
+
+```
+PermitRootLogin no
+PasswordAuthentication no
+```
+
+Restart the SSH service to apply the changes:
+
+```
+sudo systemctl restart sshd
+```
+
+<br>
+
+## Part 7 - Firewall setup with UFW:
+
+Install and configure UFW (Uncomplicated Firewall) to protect your server:
+
+```
+sudo apt install ufw
+```
+
+Set default rules:
+
+```
+sudo ufw default allow outgoing
+sudo ufw default deny incoming
+```
+
+Explicitly allow SSH and Flask development port (5000):
+
+```
+sudo ufw allow ssh
+sudo ufw allow 5000
+```
+
+Enable the firewall and confirm:
+
+```
+sudo ufw enable
+sudo ufw status
+```
+
+## Part 8 - Tranferring the Flask project:
+
+You can either:
+
+1. Clone the project from GitHub directly on the server.
+
+2. Or copy the project directory from your local machine to the server using scp.
+
+We'll go with option 2:
+
+```
+scp -r C:\Users\lenov\projects_2024\flask_corey_linux sidrk@10.0.0.44:~/
+```
+
+<br>
