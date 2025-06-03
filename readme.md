@@ -2,7 +2,7 @@
 
 This guide will walk you through deploying your Flask application from your local machine to a production-ready Linux server. The deployment will be secured with SSH key-based authentication, a firewall (UFW), and run using Nginx and Gunicorn for better performance and reliability.
 
-![alt text](https://github.com/siddhesh2263/flask-nginx-gunicorn-deployment/blob/main/assets/gunicorn_nginx_flask_merged.png?raw=true)
+![alt text](https://github.com/siddhesh2263/flask-nginx-gunicorn-deployment/blob/main/assets/all-merged.png?raw=true)
 
 <br>
 
