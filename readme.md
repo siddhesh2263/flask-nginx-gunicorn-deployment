@@ -27,6 +27,7 @@ This guide will walk you through deploying your Flask application from your loca
 * [Part 16 - Final touches and Nginx configuration](#part-16---final-touches-and-nginx-configuration)  
 * [Part 17 - How Nginx and Gunicorn work together](#part-17---how-nginx-and-gunicorn-work-together)  
 * [Part 18 - Guide checklist](#part-18---guide-checklist)
+* [Part 19 - References](#part-19---references)
 
 <br>
 
@@ -45,6 +46,10 @@ Before you begin, this guide assumes the following:
 Your current Flask site works locally, but to make it accessible on the internet, you’ll deploy it on your own Linux server. Although this setup requires more effort, it provides the most control and flexibility for performance, security, and scalability.
 
 ![alt text](https://github.com/siddhesh2263/flask-nginx-gunicorn-deployment/blob/main/assets/server-flow.png?raw=true)
+
+<br>
+
+This diagram shows how a Flask app is deployed in production using Nginx and Gunicorn. Nginx handles HTTP requests and static files, forwarding dynamic requests to Gunicorn. Gunicorn runs multiple Flask workers and uses the WSGI protocol to execute Python code, ensuring scalability, security, and efficient request handling.
 
 <br>
 
@@ -134,7 +139,7 @@ ssh sidrk@10.0.0.44
 
 ## Part 6 - Disabling password authentication in SSH
 
-You’ll harden your SSH configuration by disabling root login and password authentication. This ensures only your SSH keys are accepted, dramatically improving your server’s security posture against password-guessing attacks.
+You’ll harden your SSH configuration by disabling root login and password authentication. This ensures only your SSH keys are accepted, protecting against password-guessing attacks.
 
 To prevent password-based logins completely and strengthen security, edit the SSH configuration file:
 
@@ -157,9 +162,9 @@ sudo systemctl restart sshd
 
 <br>
 
-## Part 7 - Firewall setup with UFW:
+## Part 7 - Firewall setup with UFW (Uncomplicated Firewall):
 
-We’ll configure UFW (Uncomplicated Firewall) to restrict access to only the necessary ports, like SSH and HTTP. This firewall setup helps protect your server from unauthorized incoming traffic and ensures only known services are reachable.
+We’ll configure UFW to restrict access to only the necessary ports, like SSH and HTTP. This firewall setup helps protect your server from unauthorized incoming traffic and ensures only known services are reachable.
 
 Install and configure UFW to protect your server:
 
@@ -429,7 +434,7 @@ When a user is in a session and a worker crashes, the impact depends on how sess
 
 ## Part 18 - Guide checklist:
 
-This final section summarizes the entire deployment process in a concise checklist. It ensures you have all the major components in place to deploy your Flask app securely and reliably in production.:
+This final section summarizes the entire deployment process in a concise checklist. It ensures you have all the major components in place to deploy your Flask app securely and reliably in production:
 
 ```
 # Deployment Checklist for Flask App on Linux Server
