@@ -343,6 +343,8 @@ nproc --all
 
 Adjust the number of workers accordingly.
 
+![alt text](https://github.com/siddhesh2263/flask-nginx-gunicorn-deployment/blob/main/assets/gunicorn-pid.png?raw=true)
+
 <br>
 
 ## Part 15 - Using Supervisor to keep Gunicorn running:
