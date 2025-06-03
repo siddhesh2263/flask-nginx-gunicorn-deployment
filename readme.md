@@ -51,6 +51,29 @@ Your current Flask site works locally, but to make it accessible on the internet
 
 This diagram shows how a Flask app is deployed in production using Nginx and Gunicorn. Nginx handles HTTP requests and static files, forwarding dynamic requests to Gunicorn. Gunicorn runs multiple Flask workers and uses the WSGI protocol to execute Python code, ensuring scalability, security, and efficient request handling.
 
+Below is an overview of some of the tools and setup we'll be using:
+
+### Nginx:
+Nginx is a high-performance web server that also acts as a reverse proxy. It efficiently handles static file delivery, such as CSS, JavaScript, and images, and forwards dynamic requests to Gunicorn for processing. Additionally, Nginx balances the load between multiple application workers to improve performance.
+
+### Gunicorn:
+Gunicorn is a Python WSGI HTTP server that runs multiple worker processes, each capable of handling requests to your Flask application. This design allows for parallel processing, better CPU utilization, and improved reliability for serving web requests.
+
+### Supervisor:
+Supervisor is a process control system that manages and monitors processes like Gunicorn. If a Gunicorn worker crashes or stops unexpectedly, Supervisor automatically restarts it, ensuring high availability and reliability of your Flask application.
+
+### UFW (Uncomplicated Firewall):
+UFW is a firewall configuration tool that simplifies the task of securing your server. It allows you to easily control incoming network connections, restricting them to only essential services like SSH and HTTP.
+
+### Python Virtual Environment (venv):
+Python’s built-in virtual environment tool, venv, creates an isolated environment for your Flask application. This ensures that project dependencies are kept separate from system-wide Python packages, providing better stability and easier management.
+
+### SSH Key-based Authentication:
+SSH key-based authentication is a secure alternative to password-based login. By using SSH keys, you make it much more difficult for attackers to gain access through brute-force password guessing.
+
+### Config File (/etc/config.json):
+A configuration file stored at /etc/config.json provides a secure location to store sensitive environment variables, such as secret keys and database URIs. This approach keeps sensitive information separate from your codebase for better security and maintainability.
+
 <br>
 
 ## Part 2 - Accessing the server and updating packages:
