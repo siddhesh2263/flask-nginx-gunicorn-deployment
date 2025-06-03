@@ -498,5 +498,5 @@ This final section summarizes the entire deployment process in a concise checkli
 
 ## Part 19 - References:
 
-[All You Need to Know about WSGI] (https://shorturl.at/Y36eZ)
-[Python Flask Tutorial: Deploying Your Application (Option #1) - Deploy to a Linux Server] (https://shorturl.at/uFuj8)
+[All You Need to Know about WSGI](https://shorturl.at/Y36eZ)
+[Python Flask Tutorial: Deploying Your Application (Option #1) - Deploy to a Linux Server](https://shorturl.at/uFuj8)
