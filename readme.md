@@ -6,13 +6,35 @@ This guide will walk you through deploying your Flask application from your loca
 
 <br>
 
+## 📝 Table of Contents
+
+* [Part 0 - Assumptions](#part-0---assumptions)  
+* [Part 1 - Local setup vs server context](#part-1---local-setup-vs-server-context)  
+* [Part 2 - Accessing the server and updating packages](#part-2---accessing-the-server-and-updating-packages)  
+* [Part 3 - Changing the servers-hostname](#part-3---changing-the-servers-hostname)  
+* [Part 4 - Adding a limited user](#part-4---adding-a-limited-user)  
+* [Part 5 - Setting up SSH key-based authentication](#part-5---setting-up-ssh-key-based-authentication)  
+* [Part 6 - Disabling password authentication in SSH](#part-6---disabling-password-authentication-in-ssh)  
+* [Part 7 - Firewall setup with UFW](#part-7---firewall-setup-with-ufw)  
+* [Part 8 - Transferring the Flask project](#part-8---transferring-the-flask-project)  
+* [Part 9 - Setting up Python virtual environment](#part-9---setting-up-python-virtual-environment)  
+* [Part 10 - Managing environment variables securely](#part-10---managing-environment-variables-securely)  
+* [Part 11 - Running Flask for testing](#part-11---running-flask-for-testing)  
+* [Part 12 - Installing and configuring Nginx and Gunicorn](#part-12---installing-and-configuring-nginx-and-gunicorn)  
+* [Part 13 - Adjust firewall rules for HTTP](#part-13---adjust-firewall-rules-for-http)  
+* [Part 14 - Running Gunicorn](#part-14---running-gunicorn)  
+* [Part 15 - Using Supervisor to keep Gunicorn running](#part-15---using-supervisor-to-keep-gunicorn-running)  
+* [Part 16 - Final touches and Nginx configuration](#part-16---final-touches-and-nginx-configuration)  
+* [Part 17 - How Nginx and Gunicorn work together](#part-17---how-nginx-and-gunicorn-work-together)  
+* [Part 18 - Guide checklist](#part-18---guide-checklist)
+
+<br>
+
 ## Part 0 - Assumptions:
 
 Before you begin, this guide assumes the following:
 
 * You know how to install Ubuntu (or your chosen Linux distribution) and are comfortable using it.
-
-* You have basic terminal skills (e.g., navigating directories, editing files with nano or vim, running commands with sudo).
 
 * You already have a working Flask project that you want to deploy in a production environment.
 
@@ -381,7 +403,7 @@ When a user is in a session and a worker crashes, the impact depends on how sess
 
 ## Part 18 - Guide checklist:
 
-Below is the concise deployment roadmap for Flask on Linux: secure SSH, firewall, environment isolation, Nginx-Gunicorn setup, and Supervisor management.
+Below is the compiled checklist for Flask on Linux: secure SSH, firewall, environment isolation, Nginx-Gunicorn setup, and Supervisor management:
 
 ```
 # Deployment Checklist for Flask App on Linux Server
