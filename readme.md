@@ -59,7 +59,7 @@ sudo apt update && sudo apt upgrade -y
 
 ## Part 3 - Changing the server's hostname:
 
-For easier management, set a descriptive hostname on your server:
+We’ll update your server’s hostname for easy identification. You’ll use the `hostnamectl` command and update the `/etc/hosts` file to reflect the new hostname consistently across the system:
 
 ```
 sudo hostnamectl set-hostname flask-server
@@ -132,6 +132,8 @@ ssh sidrk@10.0.0.44
 
 ## Part 6 - Disabling password authentication in SSH
 
+You’ll harden your SSH configuration by disabling root login and password authentication. This ensures only your SSH keys are accepted, dramatically improving your server’s security posture against password-guessing attacks.
+
 To prevent password-based logins completely and strengthen security, edit the SSH configuration file:
 
 ```
@@ -155,7 +157,9 @@ sudo systemctl restart sshd
 
 ## Part 7 - Firewall setup with UFW:
 
-Install and configure UFW (Uncomplicated Firewall) to protect your server:
+We’ll configure UFW (Uncomplicated Firewall) to restrict access to only the necessary ports, like SSH and HTTP. This firewall setup helps protect your server from unauthorized incoming traffic and ensures only known services are reachable.
+
+Install and configure UFW to protect your server:
 
 ```
 sudo apt install ufw
@@ -202,7 +206,7 @@ scp -r C:\Users\lenov\projects_2024\flask_corey_linux sidrk@10.0.0.44:~/
 
 ## Part 9 - Setting up Python virtual environment on the server:
 
-We will need to run the Flask application inside a virtual environment. Install the below Python tools to set it up:
+This section shows how to create a Python virtual environment to isolate your Flask project’s dependencies from system-wide packages. We’ll also activate the environment and install project dependencies from your `requirements.txt` file.
 
 ```
 sudo apt install python3-pip
@@ -248,7 +252,7 @@ Update your Flask app to read from this config file using Python’s `json` modu
 
 ## Part 11 - Running Flask for testing:
 
-For initial testing, you can temporarily run Flask directly:
+You’ll temporarily run your Flask app using `flask run` to make sure everything is working. This allows you to quickly verify that the transferred code and virtual environment are set up correctly:
 
 ```
 export FLASK_APP=run.py
@@ -261,7 +265,7 @@ This allows external access. You can test by visiting the server’s IP and port
 
 ## Part 12 - Installing and configuring Nginx and Gunicorn:
 
-For production, Nginx will act as a reverse proxy, and Gunicorn will run the Python code.
+You’ll install Nginx as a reverse proxy and Gunicorn as the WSGI server. This part covers setting up Nginx to forward requests to Gunicorn and handle static files separately for better performance. Gunicorn will run the Python code.
 
 Install Nginx:
 
@@ -293,6 +297,8 @@ Configure it to forward Python requests to Gunicorn running on port 8000 and han
 
 ## Part 13 - Adjust firewall rules for HTTP:
 
+You’ll open port 80 for HTTP traffic and remove any unnecessary testing ports from the firewall. This ensures your Flask app is accessible to the world while keeping your server secure.
+
 Open port 80 for Nginx:
 
 ```
@@ -321,6 +327,8 @@ sudo systemctl restart nginx
 
 ## Part 14 - Running Gunicorn:
 
+You’ll learn how to start Gunicorn with multiple workers to handle concurrent requests. We’ll also discuss adjusting the number of workers based on your server’s available CPU cores.
+
 Start Gunicorn with the recommended number of worker processes:
 
 ```
@@ -339,7 +347,7 @@ Adjust the number of workers accordingly.
 
 ## Part 15 - Using Supervisor to keep Gunicorn running:
 
-Install Supervisor to ensure Gunicorn stays running and restarts on crashes:
+We’ll install Supervisor to manage Gunicorn as a background service. Supervisor will monitor Gunicorn, restarting it if it crashes and ensuring it stays up without manual intervention:
 
 ```
 sudo apt install supervisor
@@ -371,6 +379,8 @@ sudo supervisorctl reload
 
 ## Part 16 - Final touches and Nginx configuration:
 
+We’ll cover final tweaks like adjusting Nginx’s `client_max_body_size` to allow larger file uploads. You’ll also restart Nginx to apply all the changes and confirm everything is set up for production.
+
 If you need to increase file upload size in Nginx (to avoid errors like `413 Request Entity Too Large`), update:
 
 ```
@@ -395,6 +405,8 @@ The Flask app is now running in production, accessible by visiting your server�
 
 ## Part 17 - Closing points - How Nginx and Gunicorn work:
 
+This part explains how Nginx and Gunicorn work together in production. Nginx handles static files and load balancing, while Gunicorn runs multiple Flask app instances to serve dynamic requests in parallel.
+
 Gunicorn creates multiple workers, each acting as a separate process running the Flask application. These processes are independent of each other and can handle incoming requests in parallel, effectively creating multiple instances of the app running simultaneously. Nginx acts as a reverse proxy sitting in front of Gunicorn, forwarding requests to one of the workers. By default, Nginx uses round-robin load balancing to distribute requests evenly across all available workers. This setup not only improves concurrency, allowing multiple requests to be served simultaneously, but also enhances reliability—if one worker crashes, other workers continue to handle traffic seamlessly. Additionally, Nginx manages static files like CSS, JavaScript, and images, further reducing the load on the Flask application code.
 
 When a user is in a session and a worker crashes, the impact depends on how session data is stored. Flask’s default session mechanism stores session data in the user’s browser cookie, meaning no session data is lost as long as the server can still decode the cookie using the same `SECRET_KEY`. If a user refreshes the page or makes another request, the session cookie is sent to a different worker, preserving their logged-in state. However, any unsaved in-memory data, like a draft in an editor that hasn’t been committed to the database, would be lost if the worker crashes because that data exists only in the memory of that particular process. When the user submits the form and saves their work, the data is sent to the database and remains safe. Meanwhile, Gunicorn and process managers like Supervisor (or systemd) will automatically restart any crashed workers. Subsequent requests from the user will be handled by another running or restarted worker, ensuring that the overall user experience remains uninterrupted as long as the application doesn’t rely on in-memory state.
@@ -403,7 +415,7 @@ When a user is in a session and a worker crashes, the impact depends on how sess
 
 ## Part 18 - Guide checklist:
 
-Below is the compiled checklist for Flask on Linux: secure SSH, firewall, environment isolation, Nginx-Gunicorn setup, and Supervisor management:
+This final section summarizes the entire deployment process in a concise checklist. It ensures you have all the major components in place to deploy your Flask app securely and reliably in production.:
 
 ```
 # Deployment Checklist for Flask App on Linux Server
