@@ -40,9 +40,11 @@ Before you begin, this guide assumes the following:
 
 <br>
 
-## Part 1 - Local setup vs server context:
+## Part 1 - Introduction, Local setup vs server context:
 
 Your current Flask site works locally, but to make it accessible on the internet, you’ll deploy it on your own Linux server. Although this setup requires more effort, it provides the most control and flexibility for performance, security, and scalability.
+
+![alt text](https://github.com/siddhesh2263/flask-nginx-gunicorn-deployment/blob/main/assets/server-flow.png?raw=true)
 
 <br>
 
@@ -415,7 +417,7 @@ The Flask app is now running in production, accessible by visiting your server�
 
 This part explains how Nginx and Gunicorn work together in production. Nginx handles static files and load balancing, while Gunicorn runs multiple Flask app instances to serve dynamic requests in parallel.
 
-![alt text](https://github.com/siddhesh2263/flask-nginx-gunicorn-deployment/blob/main/assets/server-flow.png?raw=true)
+![alt text](https://github.com/siddhesh2263/flask-nginx-gunicorn-deployment/blob/main/assets/forking-merged.png?raw=true)
 
 Gunicorn creates multiple workers, each acting as a separate process running the Flask application. These processes are independent of each other and can handle incoming requests in parallel, effectively creating multiple instances of the app running simultaneously. Nginx acts as a reverse proxy sitting in front of Gunicorn, forwarding requests to one of the workers. By default, Nginx uses round-robin load balancing to distribute requests evenly across all available workers. This setup not only improves concurrency, allowing multiple requests to be served simultaneously, but also enhances reliability—if one worker crashes, other workers continue to handle traffic seamlessly. Additionally, Nginx manages static files like CSS, JavaScript, and images, further reducing the load on the Flask application code.
 
