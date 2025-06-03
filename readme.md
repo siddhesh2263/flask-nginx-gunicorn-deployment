@@ -218,6 +218,8 @@ Add sensitive values like `SECRET_KEY`, `SQLALCHEMY_DATABASE_URI`, and email cre
 
 Update your Flask app to read from this config file using Python’s `json` module, replacing any `os.environ.get()` calls with `config.get()`.
 
+![alt text](https://github.com/siddhesh2263/flask-nginx-gunicorn-deployment/blob/main/assets/config-read-secret.png?raw=true)
+
 <br>
 
 ## Part 11 - Running Flask for testing:
