@@ -293,6 +293,8 @@ sudo nano /etc/nginx/sites-enabled/flaskblog
 
 Configure it to forward Python requests to Gunicorn running on port 8000 and handle static files.
 
+![alt text](https://github.com/siddhesh2263/flask-nginx-gunicorn-deployment/blob/main/assets/nginx-config-forwarding.png?raw=true)
+
 <br>
 
 ## Part 13 - Adjust firewall rules for HTTP:
@@ -362,6 +364,10 @@ sudo nano /etc/supervisor/conf.d/flaskblog.conf
 ```
 
 Provide the full path to the Gunicorn executable inside the virtual environment.
+
+![alt text](https://github.com/siddhesh2263/flask-nginx-gunicorn-deployment/blob/main/assets/supervisor-config.png?raw=true)
+
+<br>
 
 Create log directories:
 
