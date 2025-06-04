@@ -71,8 +71,8 @@ Python’s built-in virtual environment tool, venv, creates an isolated environm
 ### SSH Key-based Authentication:
 SSH key-based authentication is a secure alternative to password-based login. By using SSH keys, you make it much more difficult for attackers to gain access through brute-force password guessing.
 
-### Config File (/etc/config.json):
-A configuration file stored at /etc/config.json provides a secure location to store sensitive environment variables, such as secret keys and database URIs. This approach keeps sensitive information separate from your codebase for better security and maintainability.
+### Config File (`/etc/config.json`):
+A configuration file stored at `/etc/config.json` provides a secure location to store sensitive environment variables, such as secret keys and database URIs. This approach keeps sensitive information separate from your codebase for better security and maintainability.
 
 <br>
 
