@@ -25,9 +25,10 @@ This guide will walk you through deploying your Flask application from your loca
 * [Part 14 - Running Gunicorn](#part-14---running-gunicorn)  
 * [Part 15 - Using Supervisor to keep Gunicorn running](#part-15---using-supervisor-to-keep-gunicorn-running)  
 * [Part 16 - Final touches and Nginx configuration](#part-16---final-touches-and-nginx-configuration)  
-* [Part 17 - How Nginx and Gunicorn work together](#part-17---how-nginx-and-gunicorn-work-together)  
-* [Part 18 - Guide checklist](#part-18---guide-checklist)
-* [Part 19 - References](#part-19---references)
+* [Part 17 - How Nginx and Gunicorn work together](#part-17---how-nginx-and-gunicorn-work-together)
+* [Part 18 - Future upgrades](#part-18---future-upgrades)
+* [Part 19 - Guide checklist](#part-19---guide-checklist)
+* [Part 20 - References](#part-20---references)
 
 <br>
 
@@ -455,7 +456,17 @@ When a user is in a session and a worker crashes, the impact depends on how sess
 
 <br>
 
-## Part 18 - Guide checklist:
+## Part 18 - Future upgrades:
+
+To further enhance the production readiness of your Flask deployment, consider implementing the following upgrades:
+
+* Use a Custom Domain Name: Point your domain to your server’s IP for a more professional and memorable application URL.
+
+* Enable HTTPS with SSL/TLS: Secure communication between clients and your server by obtaining a free SSL certificate using Let’s Encrypt. This improves security and builds trust with users accessing your application.
+
+<br>
+
+## Part 19 - Guide checklist:
 
 This final section summarizes the entire deployment process in a concise checklist. It ensures you have all the major components in place to deploy your Flask app securely and reliably in production:
 
@@ -524,7 +535,7 @@ This final section summarizes the entire deployment process in a concise checkli
 
 <br>
 
-## Part 19 - References:
+## Part 20 - References:
 
 * [All You Need to Know about WSGI](https://shorturl.at/Y36eZ)
 
