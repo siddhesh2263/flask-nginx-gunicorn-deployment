@@ -6,7 +6,7 @@ This guide will walk you through deploying your Flask application from your loca
 
 <br>
 
-## 📝 Table of Contents
+## Table of Contents
 
 * [Part 0 - Assumptions](#part-0---assumptions)  
 * [Part 1 - Local setup vs server context](#part-1---local-setup-vs-server-context)  
